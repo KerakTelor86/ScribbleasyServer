@@ -36,6 +36,12 @@ class Board {
     }
   }
 
+  void clear() {
+    baking = false;
+    image = null;
+    points.clear();
+  }
+
   Future<Data> export() async {
     Data data = Data();
     List<double> x = List();

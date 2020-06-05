@@ -7,6 +7,8 @@ class Session {
   final int maxUsers;
   final Board board = Board();
   final HashSet<User> users = HashSet();
+  HashSet<User> clearVoters = HashSet();
+  int voteCount = 0;
 
   Session(this.maxUsers);
 
@@ -23,8 +25,22 @@ class Session {
       case 'sync':
         syncUser(user);
         break;
+      case 'clear':
+        voteClear(user);
+        break;
       default:
         break;
+    }
+  }
+
+  void voteClear(User user) {
+    clearVoters.add(user);
+    if (clearVoters.length == users.length) {
+      board.clear();
+      for (var i in users) {
+        syncUser(i);
+      }
+      clearVoters = HashSet();
     }
   }
 
