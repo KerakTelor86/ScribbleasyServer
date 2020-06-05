@@ -8,7 +8,7 @@ class Board {
   Ui.Image image;
   List<Offset> points = [];
   bool baking = false;
-  final Size curSize = Ui.Size(4000, 4000);
+  final Size curSize = Ui.Size(4000, 2250);
 
   void applyUpdate(Data data) {
     addPoint(Ui.Offset(data['dx'], data['dy']));
