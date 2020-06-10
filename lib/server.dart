@@ -43,8 +43,7 @@ class Server {
     try {
       var id = _getUserId();
       var user = User(id, username, ws);
-      ws.listen(
-          (data) => _sessionManager.handleRequest(user, Data.fromString(data)),
+      ws.listen((data) => _handleMsg(user, Data.fromString(data)),
           onError: (err) => _handleError(user, err),
           onDone: () => _disconnectUser(user));
       _users[id] = user;
@@ -55,6 +54,14 @@ class Server {
       confirmation['auth'] = 0;
       ws.add(confirmation.toString());
       print('SERVER FULL: $username');
+    }
+  }
+
+  void _handleMsg(User user, Data data) {
+    if (data['type'] != 'logout') {
+      return _sessionManager.handleRequest(user, data);
+    } else {
+      return _disconnectUser(user);
     }
   }
 

@@ -49,7 +49,6 @@ class ConfigState extends State<Config> {
       sv.stop();
       running = false;
     }
-    exit(0);
   }
 
   @override
@@ -96,7 +95,7 @@ class ConfigState extends State<Config> {
     );
     final stopButton = RaisedButton(
       onPressed: () => stopServer(),
-      child: Text('Stop and exit'),
+      child: Text('Stop server'),
     );
     return Row(
       children: <Widget>[
