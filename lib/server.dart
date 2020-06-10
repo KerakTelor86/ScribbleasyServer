@@ -31,7 +31,9 @@ class Server {
     // TODO: Cleanly stop server
     print('Server closing, disconnecting everyone...');
     for (User i in _users) {
-      _disconnectUser(i);
+      if (i != null) {
+        _disconnectUser(i);
+      }
     }
   }
 

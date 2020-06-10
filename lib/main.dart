@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:Server/server.dart';
 
 void main() => runApp(MyApp());
@@ -48,6 +49,7 @@ class ConfigState extends State<Config> {
     if (running) {
       sv.stop();
       running = false;
+      exit(0);
     }
   }
 
@@ -95,7 +97,7 @@ class ConfigState extends State<Config> {
     );
     final stopButton = RaisedButton(
       onPressed: () => stopServer(),
-      child: Text('Stop server'),
+      child: Text('Stop and exit'),
     );
     return Row(
       children: <Widget>[
